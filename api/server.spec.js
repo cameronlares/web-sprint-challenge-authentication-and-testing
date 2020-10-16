@@ -1,4 +1,3 @@
-const { expectCt } = require("helmet")
 const supertest = require("supertest")
 const server = require("./server")
 
@@ -11,6 +10,12 @@ describe("server.js", () => {
                 expect(res.status).toBe(200)
             })
         })
-     
+        it("should return JSON", () => {
+            return supertest(server)
+                .get("/")
+                .then(res => {
+                    expect(res.type).toMatch(/json/i);
+                });
+        });
     })
 })
