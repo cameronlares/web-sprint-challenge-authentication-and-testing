@@ -13,13 +13,14 @@ function find() {
 
 function findBy(filter) {
     return db("users as u")
-    .where(filter)
+    .where(filter) //username
     .select("u.id", "u.username", "u.password")
     .orderBy("u.id")
 }
 
 async function add(user) {
     try {
+        //Could use .then
         const [id] = await db("users").insert(user, "id");
         return findById(id)
     } catch(error) {

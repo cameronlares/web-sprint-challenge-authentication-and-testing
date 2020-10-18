@@ -41,7 +41,7 @@ router.post("/login", (req, res) => {
   const { username, password } = req.body;
   if (isValid(req.body)) {
     Users.findBy({
-      username,
+      username, //returns an array a collection
     }).then(([user]) => {
       //compare the password
       if (user && bcryptjs.compareSync(password, user.password)) {
